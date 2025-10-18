@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: UnaHur Anti-Social Net
+  version: "1.0.0"
+servers:
+  - url: http://localhost:3000/api
+paths:
+  /users:
+    post:
+      summary: Crear usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickName:
+                  type: string
+                email:
+                  type: string
+                displayName:
+                  type: string
+      responses:
+        "201":
+          description: Created
+  /posts:
+    post:
+      summary: Crear post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorId:
+                  type: string
+                description:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: Post creado
+    get:
+      summary: Listar posts
+      responses:
+        "200":
+          description: OK
