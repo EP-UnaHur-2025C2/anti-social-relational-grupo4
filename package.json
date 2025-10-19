@@ -1,6 +1,7 @@
 {
   "name": "anti-social",
   "version": "1.0.0",
+  "type": "module",
   "description": "UnaHur anti-social net - Trabajo Práctico",
   "main": "src/index.js",
   "scripts": {

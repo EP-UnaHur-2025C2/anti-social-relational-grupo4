@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Swagger
-const swaggerDocument = YAML.load(path.join(process.cwd(), "swagger.yaml"));
+const swaggerDocument = YAML.load(path.join(process.cwd(), "src", "swagger.yaml"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Static files (images)
