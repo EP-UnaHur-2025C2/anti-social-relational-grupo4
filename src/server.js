@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
   try {
     await sequelize.authenticate();
     // sincroniza modelos en DB (solo para dev). En prod usar migraciones.
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log("✅ DB connected and models synced");
     app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
   } catch (err) {

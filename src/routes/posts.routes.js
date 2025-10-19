@@ -2,7 +2,8 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { Post, PostImage, Tag, User } from "../models/index.js";
+import { Post, PostImage, Tag, User, Comment } from "../models/index.js";
+import { Op } from "sequelize";
 
 const router = express.Router();
 
@@ -59,10 +60,10 @@ router.post("/:postId/images", upload.array("images", 6), async (req, res) => {
   }
 });
 
-// Listar posts con imágenes, tags y comentarios filtrando comentarios viejos
+// Listar posts con imágenes, tags, autor y comentarios recientes
 router.get("/", async (req, res) => {
   try {
-    const months = parseInt(process.env.COMMENT_VISIBLE_MONTHS || process.env.COMMENT_VISIBLE_MONTHS || 6);
+    const months = parseInt(process.env.COMMENT_VISIBLE_MONTHS || 6);
     const cutoff = new Date();
     cutoff.setMonth(cutoff.getMonth() - months);
 
@@ -76,13 +77,13 @@ router.get("/", async (req, res) => {
           attributes: ["id", "nickName", "displayName"],
         },
         {
-          model: (await import("../models/Comment.js")).default, // can't circular-import easily; alternative below
+          model: Comment,
           as: "comments",
-          where: { created_at: { $gte: cutoff } },
+          where: { createdAt: { [Op.gte]: cutoff } },
           required: false,
         },
       ],
-      order: [["created_at", "DESC"]],
+      order: [["createdAt", "DESC"]],
     });
 
     res.json(posts);

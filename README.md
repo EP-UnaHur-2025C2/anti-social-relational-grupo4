@@ -4,7 +4,7 @@
 Se solicita el modelado y desarrollo de un sistema backend para una red social llamada **“UnaHur Anti-Social Net”**, inspirada en plataformas populares que permiten a los usuarios realizar publicaciones y recibir comentarios sobre las mismas.
 
 ![Imagen](./assets/ANTI-SOCIALNET.jpeg)
-
+![Imagen](./assets/DER.jpeg)
 # Contexto del Proyecto
 
 En una primera reunión con los sponsors del proyecto, se definieron los siguientes requerimientos para el desarrollo de un **MVP (Producto Mínimo Viable)**:
